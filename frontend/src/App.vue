@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, computed } from 'vue';
+import { onMounted, computed, ref } from 'vue';
 import { useAuthStore } from '@/stores/auth';
 import { useTasksStore } from '@/stores/tasks';
 import Auth from '@/components/Auth.vue';
@@ -11,6 +11,12 @@ const tasksStore = useTasksStore();
 
 const isAuthenticated = computed(() => authStore.isAuthenticated);
 const user = computed(() => authStore.user);
+
+const errors = ref({
+  name: null,
+  email: null,
+  password: null
+});
 
 onMounted(async () => {
   try {
@@ -122,5 +128,10 @@ body {
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   padding: 2rem;
+}
+
+/* Error input styles */
+.error-input {
+  border: 2px solid red;
 }
 </style>

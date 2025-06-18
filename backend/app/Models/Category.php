@@ -8,14 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     use HasFactory;
-
-    protected $fillable = [
-        'name',
-    ];
-
-    // Relationship: Category has many tasks
+    
+    protected $fillable = ['name', 'description', 'user_id'];
+    
     public function tasks()
     {
         return $this->hasMany(Task::class);
+    }
+    
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

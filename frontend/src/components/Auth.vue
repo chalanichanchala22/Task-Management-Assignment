@@ -13,14 +13,14 @@ const form = reactive({
   name: '',
   email: '',
   password: '',
-  password_confirmation: ''
+  confirmPassword: ''
 });
 
 const errors = reactive({
   name: '',
   email: '',
   password: '',
-  password_confirmation: ''
+  confirmPassword: ''
 });
 
 const validateField = (field) => {
@@ -38,14 +38,14 @@ const validateField = (field) => {
     errors.password = 'Password is required';
   }
   
-  if (field === 'password_confirmation' && !form.password_confirmation && !isLogin.value) {
-    errors.password_confirmation = 'Please confirm your password';
+  if (field === 'confirmPassword' && !form.confirmPassword && !isLogin.value) {
+    errors.confirmPassword = 'Please confirm your password';
   }
 };
 
 const validatePasswordMatch = () => {
-  if (form.password !== form.password_confirmation) {
-    errors.password_confirmation = 'Passwords do not match';
+  if (form.password !== form.confirmPassword) {
+    errors.confirmPassword = 'Passwords do not match';
     return false;
   }
   return true;
@@ -58,7 +58,7 @@ const handleAuth = async () => {
   // Validate all fields before submission
   if (!isLogin.value) {
     validateField('name');
-    validateField('password_confirmation');
+    validateField('confirmPassword');
   }
   validateField('email');
   validateField('password');
@@ -75,7 +75,7 @@ const handleAuth = async () => {
   if (!isLogin.value) {
     validatePasswordMatch();
     // Don't proceed if passwords don't match
-    if (errors.password_confirmation) {
+    if (errors.confirmPassword) {
       return;
     }
   }

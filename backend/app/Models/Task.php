@@ -9,23 +9,25 @@ class Task extends Model
 {
     use HasFactory;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
-        'user_id',
-        'category_id',
         'title',
         'description',
-        'completed',
+        'user_id',
+        'due_date',
+        'status',
+        'priority'
     ];
 
-    // Relationship: Task belongs to a user
+    /**
+     * Get the user that owns the task.
+     */
     public function user()
     {
         return $this->belongsTo(User::class);
-    }
-
-    // Relationship: Task belongs to a category
-    public function category()
-    {
-        return $this->belongsTo(Category::class);
     }
 }
