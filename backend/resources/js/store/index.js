@@ -171,3 +171,7 @@ export default createStore({
     }
   }
 });
+
+export { useAuthStore } from './auth';
+export { useTasksStore } from '../tasksStore';
+export { useCategoriesStore } from './categoriesStore';

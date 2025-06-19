@@ -1,5 +1,8 @@
-import { defineStore } from 'pinia';
-import axios from 'axios';
+import { defineStore } from 'pinia'
+import api from '@/api'
+import router from '@/router'
+import { useTasksStore } from './tasksStore'
+import { useCategoriesStore } from './categories'
 
 export const useAuthStore = defineStore('auth', {
   state: () => ({
@@ -14,11 +17,11 @@ export const useAuthStore = defineStore('auth', {
   actions: {
     async login(email, password) {
       try {
-        const response = await axios.post('/api/login', { email, password });
+        const response = await api.post('/login', { email, password });
         this.token = response.data.token;
         this.user = response.data.user;
         localStorage.setItem('token', this.token);
-        axios.defaults.headers.common['Authorization'] = `Bearer ${this.token}`;
+        api.defaults.headers.common['Authorization'] = `Bearer ${this.token}`;
         return response.data;
       } catch (error) {
         console.error('Login error:', error);
@@ -28,16 +31,16 @@ export const useAuthStore = defineStore('auth', {
     
     async register(name, email, password, password_confirmation) {
       try {
-        const response = await axios.post('/api/register', { 
+        const response = await api.post('/register', { 
           name, 
           email, 
           password, 
-          password_confirmation 
+          confirmPassword
         });
         this.token = response.data.token;
         this.user = response.data.user;
         localStorage.setItem('token', this.token);
-        axios.defaults.headers.common['Authorization'] = `Bearer ${this.token}`;
+        api.defaults.headers.common['Authorization'] = `Bearer ${this.token}`;
         return response.data;
       } catch (error) {
         console.error('Registration error:', error);
@@ -49,8 +52,8 @@ export const useAuthStore = defineStore('auth', {
       try {
         if (!this.token) throw new Error('No authentication token');
         
-        axios.defaults.headers.common['Authorization'] = `Bearer ${this.token}`;
-        const response = await axios.get('/api/user');
+        api.defaults.headers.common['Authorization'] = `Bearer ${this.token}`;
+        const response = await api.get('/user');
         this.user = response.data;
         return response.data;
       } catch (error) {
@@ -64,7 +67,7 @@ export const useAuthStore = defineStore('auth', {
       this.user = null;
       this.token = null;
       localStorage.removeItem('token');
-      delete axios.defaults.headers.common['Authorization'];
+      delete api.defaults.headers.common['Authorization'];
     }
   }
 });

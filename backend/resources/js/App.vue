@@ -31,6 +31,8 @@
 </template>
 
 <script>
+import { useTasksStore } from '@/stores/tasksStore';
+
 export default {
   computed: {
     isAuthenticated() {
@@ -44,3 +46,7 @@ export default {
   }
 }
 </script>
+
+<style>
+/* Add any component-specific styles here */
+</style>

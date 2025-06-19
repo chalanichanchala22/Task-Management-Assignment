@@ -92,7 +92,7 @@ const handleAuth = async () => {
         name: form.name,
         email: form.email,
         password: form.password,
-        password_confirmation: form.password_confirmation
+        confirmPassword: form.confirmPassword
       });
     }
     await tasksStore.fetchTasks();
@@ -109,7 +109,7 @@ const toggleLoginMode = () => {
   form.name = '';
   form.email = '';
   form.password = '';
-  form.password_confirmation = '';
+  form.confirmPassword = '';
   authError.value = '';
   Object.keys(errors).forEach(key => errors[key] = '');
 };
@@ -170,16 +170,16 @@ const title = computed(() => isLogin.value ? 'Login' : 'Register');
       
       <!-- Password confirmation (only for registration) -->
       <div v-if="!isLogin" class="form-group">
-        <label for="password_confirmation">Confirm Password</label>
+        <label for="confirmPassword">Confirm Password</label>
         <input 
-          id="password_confirmation" 
-          v-model="form.password_confirmation" 
+          id="confirmPassword" 
+          v-model="form.confirmPassword" 
           type="password" 
           autocomplete="new-password"
-          @blur="validateField('password_confirmation')" 
-          :class="{'error': errors.password_confirmation}"
+          @blur="validateField('confirmPassword')" 
+          :class="{'error': errors.confirmPassword}"
         >
-        <div v-if="errors.password_confirmation" class="error-text">{{ errors.password_confirmation }}</div>
+        <div v-if="errors.confirmPassword" class="error-text">{{ errors.confirmPassword }}</div>
       </div>
       
       <!-- Submit button -->

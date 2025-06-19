@@ -1,6 +1,6 @@
 import './bootstrap';
 import { createApp } from 'vue';
-import AuthService from './services/auth';
+
 
 // Set axios defaults for CSRF
 axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
