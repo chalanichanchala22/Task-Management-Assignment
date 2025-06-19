@@ -142,8 +142,4 @@ The backend provides the following API endpoints:
 
 ## License
 
-This project is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-
-## Contact
-
-For questions or support, please contact [your-email@example.com](mailto:your-email@example.com).
+This project is open-sourced software licensed under the [https://github.com/chalanichanchala22/Task-Management-Assignment].
