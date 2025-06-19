@@ -133,8 +133,8 @@ const cancel = () => {
         ></textarea>
       </div>
       
-      <div class="mb-3">
-        <label for="category_id" class="form-label">Category</label>
+      <div class="form-group">
+        <label for="category_id">Category</label>
         <select 
           id="category_id" 
           v-model="form.category_id"
