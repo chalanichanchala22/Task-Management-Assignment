@@ -133,10 +133,10 @@ const cancel = () => {
         ></textarea>
       </div>
       
-      <div class="form-group">
-        <label for="category">Category</label>
+      <div class="mb-3">
+        <label for="category_id" class="form-label">Category</label>
         <select 
-          id="category" 
+          id="category_id" 
           v-model="form.category_id"
           :class="{ error: errors.category_id }"
           autocomplete="off"
